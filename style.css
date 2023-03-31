@@ -1,4 +1,9 @@
-* {
+body {
+  font-family: system-ui;
+  background: #f06d06;
+  color: white;
+  text-align: center;
+}* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -51,3 +56,11 @@ canvas {
 
 footer {
   background-color: #333;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+}
+
+#ad-container {
+  margin-top: 10px;
+}

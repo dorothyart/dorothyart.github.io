@@ -5,29 +5,38 @@ let isDrawing = false;
 let lastX = 0;
 let lastY = 0;
 
-canvas.addEventListener('mousedown', (event) => {
-    isDrawing = true;
-    [lastX, lastY] = [event.offsetX, event.offsetY];
+// Set canvas size to match parent container
+canvas.width = canvas.parentNode.clientWidth;
+canvas.height = canvas.parentNode.clientHeight;
+
+// Handle window resize to update canvas size
+window.addEventListener("resize", () => {
+  canvas.width = canvas.parentNode.clientWidth;
+  canvas.height = canvas.parentNode.clientHeight;
 });
 
-canvas.addEventListener('mousemove', (event) => {
-    if (isDrawing) {
-        const currentX = event.offsetX;
-        const currentY = event.offsetY;
-
-        context.beginPath();
-        context.moveTo(lastX, lastY);
-        context.lineTo(currentX, currentY);
-        context.stroke();
-
-        [lastX, lastY] = [currentX, currentY];
-    }
+// Set up event listeners for drawing
+canvas.addEventListener('mousedown', (e) => {
+  isDrawing = true;
+  [lastX, lastY] = [e.offsetX, e.offsetY];
+});
+canvas.addEventListener('mousemove', (e) => {
+  if (!isDrawing) return;
+  ctx.beginPath();
+  ctx.moveTo(lastX, lastY);
+  ctx.lineTo(e.offsetX, e.offsetY);
+  ctx.stroke();
+  [lastX, lastY] = [e.offsetX, e.offsetY];
 });
 
 canvas.addEventListener('mouseup', () => {
-    isDrawing = false;
+  isDrawing = false;
+});
+canvas.addEventListener('mouseout', () => {
+  isDrawing = false;
 });
 
-canvas.addEventListener('mouseout', () => {
-    isDrawing = false;
-});
+// Handle tool selection
+const toolButtons = document.querySelectorAll("#toolbar button");
+toolButtons.forEach((button
+

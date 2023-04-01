@@ -35,13 +35,22 @@
     <textarea id="text" placeholder="여기에 텍스트를 입력하세요"></textarea>
     <p>글자 수: <span id="count">0</span></p>
     <div class="footer">
-      <div class="author">만든이 : 도로시 박인숙</div>
+      <div class="author">만든이 도로시 박인숙</div>
       <div class="ad"><ins class="kakao_ad_area" style="display:none;"
 data-ad-unit = "DAN-nOdAVfkEyyJnaNdP"
 data-ad-width = "320"
 data-ad-height = "100"></ins>
 <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script></div>
     </div>
-    <script src="script.js"></script>
+    </div>
+    <script>
+      const text = document.getElementById('text');
+      const count = document.getElementById('count');
+
+      text.addEventListener('input', () => {
+        const textLength = text.value.length;
+        count.textContent = textLength;
+      });
+    </script>
   </body>
 </html>
